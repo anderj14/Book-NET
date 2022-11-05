@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using System.Linq;
 
 namespace LeerData
 {
@@ -10,24 +11,14 @@ namespace LeerData
         {
             using (var db = new AppVentaLibrosContext())
             {
-                var nuevoAutor1 = new Autor{
-                    Nombre = "Pedro",
-                    Apellidos = "Paredes",
-                    Grado = "Master"
-                };
-
-                db.Add(nuevoAutor1);
-
-                var nuevoAutor2 = new Autor{
-                    Nombre = "Paola",
-                    Apellidos = "Martinez",
-                    Grado = "Master"
-                };
-
-                db.Add(nuevoAutor2);
-
-                var estadoTransaccion = db.SaveChanges();
-                System.Console.WriteLine("Estado de transaccion ===> " + estadoTransaccion);
+                var autor = db.Autor.Single(x => x.Nombre == "Alex");
+                if (autor != null)
+                {
+                    autor.Apellidos = "Mendez";
+                    autor.Grado = "Biologo";
+                    var estadoTransaccion = db.SaveChanges();
+                    System.Console.WriteLine("Estado de transaccion ==> " + estadoTransaccion);
+                }
             }
         }
     }

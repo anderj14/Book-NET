@@ -10,13 +10,14 @@ namespace LeerData
         {
             using (var db = new AppVentaLibrosContext())
             {
-                var libros = db.Libro.Include(x => x.ComentarioLista).AsNoTracking();
+                var libros = db.Libro.Include(x => x.AutorLink).ThenInclude(xi => xi.Autor);
 
                 foreach (var libro in libros)
                 {
                     System.Console.WriteLine(libro.Titulo);
-                    foreach(var comentario in libro.ComentarioLista){
-                        System.Console.WriteLine("---- " + comentario.ComentarioTexto);
+                    foreach (var autLink in libro.AutorLink)
+                    {
+                        System.Console.WriteLine("---- " + autLink.Autor.Nombre);
                     }
                 }
             }

@@ -11,11 +11,10 @@ namespace LeerData
         {
             using (var db = new AppVentaLibrosContext())
             {
-                var autor = db.Autor.Single(x => x.Nombre == "Alex");
+                var autor = db.Autor.Single(x => x.AutorId == 6);
                 if (autor != null)
                 {
-                    autor.Apellidos = "Mendez";
-                    autor.Grado = "Biologo";
+                    db.Remove(autor);
                     var estadoTransaccion = db.SaveChanges();
                     System.Console.WriteLine("Estado de transaccion ==> " + estadoTransaccion);
                 }

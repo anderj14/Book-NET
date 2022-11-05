@@ -10,10 +10,15 @@ namespace LeerData
         {
             using (var db = new AppVentaLibrosContext())
             {
-               var libros = db.Libro.Include(x => x.PrecioPromocion).AsNoTracking();
-               foreach(var libro in libros){
-                System.Console.WriteLine(libro.Titulo + " ---" + libro.PrecioPromocion.PrecioActual);
-               } 
+                var libros = db.Libro.Include(x => x.ComentarioLista).AsNoTracking();
+
+                foreach (var libro in libros)
+                {
+                    System.Console.WriteLine(libro.Titulo);
+                    foreach(var comentario in libro.ComentarioLista){
+                        System.Console.WriteLine("---- " + comentario.ComentarioTexto);
+                    }
+                }
             }
         }
     }

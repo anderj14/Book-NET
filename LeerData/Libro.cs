@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LeerData
 {
@@ -14,6 +11,6 @@ namespace LeerData
 
         public System.DateTime FechaPublicacion { get; set; }
         public Precio PrecioPromocion { get; set; }
-
+        public ICollection<Comentario> ComentarioLista {get; set;}
     }
 }

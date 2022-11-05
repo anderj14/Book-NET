@@ -13,6 +13,7 @@ namespace LeerData
         public string Descripcion { get; set; }
 
         public System.DateTime FechaPublicacion { get; set; }
+        public Precio PrecioPromocion { get; set; }
 
     }
 }

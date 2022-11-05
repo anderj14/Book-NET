@@ -10,16 +10,24 @@ namespace LeerData
         {
             using (var db = new AppVentaLibrosContext())
             {
-                var libros = db.Libro.Include(x => x.AutorLink).ThenInclude(xi => xi.Autor);
+                var nuevoAutor1 = new Autor{
+                    Nombre = "Pedro",
+                    Apellidos = "Paredes",
+                    Grado = "Master"
+                };
 
-                foreach (var libro in libros)
-                {
-                    System.Console.WriteLine(libro.Titulo);
-                    foreach (var autLink in libro.AutorLink)
-                    {
-                        System.Console.WriteLine("---- " + autLink.Autor.Nombre);
-                    }
-                }
+                db.Add(nuevoAutor1);
+
+                var nuevoAutor2 = new Autor{
+                    Nombre = "Paola",
+                    Apellidos = "Martinez",
+                    Grado = "Master"
+                };
+
+                db.Add(nuevoAutor2);
+
+                var estadoTransaccion = db.SaveChanges();
+                System.Console.WriteLine("Estado de transaccion ===> " + estadoTransaccion);
             }
         }
     }
